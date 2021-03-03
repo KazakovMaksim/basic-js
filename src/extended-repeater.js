@@ -1,8 +1,11 @@
-module.exports = function repeater(/* str, options */) {
+module.exports = function repeater(str, options) {
   let result = "";
-      
+  
+  str = String(str);
+  options.addition = String(options.addition);
+  
   if (options.repeatTimes) {
-      
+       
       for (let i = 0; i < options.repeatTimes; i++) {
           result += str;
          
@@ -25,7 +28,22 @@ module.exports = function repeater(/* str, options */) {
          }
          return result;
   
-};
+} else { 
+  result += str;
 
+  if (options.additionRepeatTimes && options.addition) {
+                  
+    for (let j = 0; j < options.additionRepeatTimes; j++) {
+             result += options.addition;
+        if (options.additionSeparator && (j < options.additionRepeatTimes - 1) ) {
+          result += options.additionSeparator
+        } else if (j < options.additionRepeatTimes - 1) {result += "|"}
+    } 
+}  if (options.addition) {
+        result += options.addition;
+    }
+  
+};
+return result;
 }
   
